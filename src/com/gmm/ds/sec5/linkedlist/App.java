@@ -15,6 +15,7 @@ public class App {
         names.traverse();
         */
 
+        /*
         LinkedList<Person> people = new LinkedList<>();
 
         Person p = new Person(23, "Adam");
@@ -25,5 +26,16 @@ public class App {
 
         people.remove(p);
         people.traverse();
+        */
+
+        LinkedList<Person> people = new LinkedList<>();
+        people.insert(new Person(23, "Adam"));
+        people.insert(new Person(34, "Daniel"));
+        people.insert(new Person(56, "Michale"));
+        people.insert(new Person(11, "Kevin"));
+        people.insert(new Person(66, "Ana"));
+
+        System.out.println(people.getMiddleNode());
+
     }
 }

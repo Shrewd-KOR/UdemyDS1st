@@ -4,7 +4,38 @@ public class LinkedList<T extends Comparable<T>> implements  List<T>{
 
     private Node<T> root;
     private int numOfItems;
-    
+
+    // 섹션8. 링크드리스트에서 가운데 노드 찾기
+    // 노드 수 카운트하고, 1/2 노드 수 재탐색하는것보다는
+    // 느린노드, 빠른노드(느린노드의 2배)를 지정하여 빠른노드가 끝노드에 도착했을대 느린노드의 위치가 가운데 노드임
+    public Node<T> getMiddleNode(){
+        Node<T> slow = this.root;
+        Node<T> fast = this.root;
+
+        // O(N/2) = O(N)
+        while(fast.getNextNode()!=null && fast.getNextNode().getNextNode()!=null){
+            slow=slow.getNextNode();
+            fast=fast.getNextNode().getNextNode();
+        }
+        return slow;
+    }
+
+    @Override
+    public void reverse(){
+        Node<T> currentNode = this.root;
+        Node<T> previousNode = null;
+        Node<T> nextNode = null;
+
+        while(currentNode != null){
+            nextNode = currentNode.getNextNode();
+            currentNode.setNextNode(previousNode);
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+
+        this.root = previousNode;
+    }
+
     @Override
     public void insert(T data) {
         if(root == null){
